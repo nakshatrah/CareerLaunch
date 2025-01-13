@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Your Profile</h1>
+    <form method="POST">
+        <label>Brushed Teeth (Morning):</label>
+        <input type="checkbox" name="brush_morning"><br>
+        <label>Showered Today:</label>
+        <input type="checkbox" name="shower"><br>
+        <button type="submit">Save Progress</button>
+    </form>
+    <a href="/">Back to Home</a>
+</body>
+</html>
+
+<h2>Your Progress</h2>
+<ul>
+    <li>Brushed Teeth (Morning): {{ '✔' if progress['brush_morning'] else '✘' }}</li>
+    <li>Showered Today: {{ '✔' if progress['shower'] else '✘' }}</li>
+</ul>
