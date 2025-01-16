@@ -4,7 +4,9 @@ app = Flask(__name__)
 
 progress = {
     "brush_morning": False,
-    "shower": False
+    "shower": False,
+    "exercise": False,
+    "breakfast": False
 }
 
 @app.route('/')
