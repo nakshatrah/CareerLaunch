@@ -8,18 +8,21 @@
 <body>
     <h1>Your Profile</h1>
     <form method="POST">
-        <label>Brushed Teeth (Morning):</label>
-        <input type="checkbox" name="brush_morning"><br>
-        <label>Showered Today:</label>
-        <input type="checkbox" name="shower"><br>
+        <!-- Dynamically generate checkboxes for all tasks in progress -->
+        {% for task, completed in progress.items() %}
+            <label>{{ task.replace('_', ' ').capitalize() }}:</label>
+            <input type="checkbox" name="{{ task }}" {% if completed %}checked{% endif %}><br>
+        {% endfor %}
         <button type="submit">Save Progress</button>
     </form>
     <a href="/">Back to Home</a>
+
+    <h2>Your Progress</h2>
+    <ul>
+        <!-- Dynamically display progress for all tasks -->
+        {% for task, completed in progress.items() %}
+            <li>{{ task.replace('_', ' ').capitalize() }}: {{ '✔' if completed else '✘' }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
-
-<h2>Your Progress</h2>
-<ul>
-    <li>Brushed Teeth (Morning): {{ '✔' if progress['brush_morning'] else '✘' }}</li>
-    <li>Showered Today: {{ '✔' if progress['shower'] else '✘' }}</li>
-</ul>

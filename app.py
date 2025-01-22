@@ -6,7 +6,9 @@ progress = {
     "brush_morning": False,
     "shower": False,
     "exercise": False,
-    "breakfast": False
+    "breakfast": False,
+    "wash_hands": False,  # New task
+    "dinner": False    # New task
 }
 
 @app.route('/')
@@ -17,8 +19,9 @@ def home():
 def profile():
     global progress
     if request.method == 'POST':
-        progress["brush_morning"] = 'brush_morning' in request.form
-        progress["shower"] = 'shower' in request.form
+        # Dynamically update all tasks
+        for task in progress.keys():
+            progress[task] = task in request.form
     return render_template('profile.html', progress=progress)
 
 if __name__ == '__main__':
