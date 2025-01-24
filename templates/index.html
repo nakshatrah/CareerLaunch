@@ -35,9 +35,79 @@
         }
  </style>
 </head>
+
 <body>
     <h1>Welcome to Shell Well</h1>
     <p>Track your progress and build healthy habits!</p>
     <a href="/profile">Go to Your Profile</a>
+
 </body>
+
+<script>
+
+const publicVapidKey = 'BFi1SFYxevd7_vj8S_bRJpnDoSsoi4sj7wUTayhZGfzB-6k8MoVj2LYIRRmWQv9GrMl8vgRMWXLGz29zcVhhq5s';
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+            console.log('Service Worker Registered');
+            return registration.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
+            });
+        })
+        .then(subscription => {
+            console.log('Push Subscription:', subscription);
+            return fetch('/subscribe', {
+                method: 'POST',
+                body: JSON.stringify(subscription),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        })
+        .catch(error => console.error('Service Worker Registration failed:', error));
+}
+
+function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+    const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+    const rawData = window.atob(base64);
+    return new Uint8Array([...rawData].map(char => char.charCodeAt(0)));
+}
+
+
+    <button id="notify-btn">Send Notification</button>
+
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Demo</title>
+</head>
+<body>
+    <h1>Notification Example</h1>
+    <button id="notify-btn">Send Notification</button>
+
+    <script>
+        // Bind the button to send notifications
+        document.getElementById('notify-btn').addEventListener('click', () => {
+            fetch('/send-notifications', {
+                method: 'POST',
+                body: JSON.stringify({ message: 'This is your custom reminder!' }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }).then(response => {
+                if (response.ok) {
+                    alert('Notification sent!');
+                } else {
+                    alert('Failed to send notification.');
+                }
+            });
+        });
+    </script>
+</body>
+
 </html>
