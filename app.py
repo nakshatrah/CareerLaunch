@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, send_from_directory, request
 
 app = Flask(__name__)
 
@@ -6,8 +6,14 @@ progress = {
     "brush_morning": False,
     "shower": False,
     "exercise": False,
-    "breakfast": False
+    "breakfast": False,
+    "wash_hands": False,  # New task
+    "dinner": False    # New task
 }
+
+@app.route('/sw.js')
+def serve_sw():
+    return send_from_directory('.', 'sw.js')
 
 @app.route('/')
 def home():
@@ -17,8 +23,9 @@ def home():
 def profile():
     global progress
     if request.method == 'POST':
-        progress["brush_morning"] = 'brush_morning' in request.form
-        progress["shower"] = 'shower' in request.form
+        # Dynamically update all tasks
+        for task in progress.keys():
+            progress[task] = task in request.form
     return render_template('profile.html', progress=progress)
 
 if __name__ == '__main__':

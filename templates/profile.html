@@ -91,23 +91,14 @@
 </head>
 <body>
     <h1>Your Profile</h1>
-
-    <!-- Form Section -->
-    <form method="POST" id="progress-form">
-        <label>
-            <input type="checkbox" name="brush_morning" id="brush_morning">
-            Brushed Teeth (Morning)
-        </label>
-        <label>
-            <input type="checkbox" name="shower" id="shower">
-            Showered Today
-        </label>
+    <form method="POST">
+        <label>Brushed Teeth (Morning):</label>
+        <input type="checkbox" name="brush_morning"><br>
+        <label>Showered Today:</label>
+        <input type="checkbox" name="shower"><br>
         <button type="submit">Save Progress</button>
     </form>
 
-    <a href="/">Back to Home</a>
-
-    <!-- Progress Section -->
     <h2>Your Progress</h2>
     <div class="progress">
         <ul>
@@ -116,25 +107,8 @@
         </ul>
     </div>
 
-    <script>
-        // Update progress preview dynamically
-        const brushMorningCheckbox = document.getElementById('brush_morning');
-        const showerCheckbox = document.getElementById('shower');
-        const progressBrush = document.getElementById('progress-brush');
-        const progressShower = document.getElementById('progress-shower');
 
-        function updateProgress() {
-            progressBrush.textContent = brushMorningCheckbox.checked ? '✔' : '✘';
-            progressShower.textContent = showerCheckbox.checked ? '✔' : '✘';
-        }
-
-        // Add event listeners to checkboxes
-        brushMorningCheckbox.addEventListener('change', updateProgress);
-        showerCheckbox.addEventListener('change', updateProgress);
-
-        // Initialize progress preview
-        updateProgress();
-    </script>
+    <a href="/">Back to Home</a>
 </body>
 </html>
 
