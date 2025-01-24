@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, send_from_directory, request
 
 app = Flask(__name__)
 
@@ -8,6 +8,10 @@ progress = {
     "exercise": False,
     "breakfast": False
 }
+
+@app.route('/sw.js')
+def serve_sw():
+    return send_from_directory('.', 'sw.js')
 
 @app.route('/')
 def home():
