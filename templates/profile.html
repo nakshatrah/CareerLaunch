@@ -96,20 +96,18 @@
     </style>
 </head>
 <body>
-    <h1>Your Profile</h1>
+    <h1>Your Profile:</h1>
     
-    <!-- Form for setting a task and time -->
     <form method="POST">
         <label for="task_name">Task Name:</label>
         <input type="text" name="task_name" id="task_name" placeholder="Enter task name" required>
         
-        <label for="task_time">Task Time (HH:MM):</label>
+        <label for="task_time">Task Time (enter in Hour: Minute format):</label>
         <input type="time" name="task_time" id="task_time" required>
         
         <button type="submit">Add Task</button>
     </form>
 
-    <!-- Show checkbox-based tasks -->
     <h2>Progress Tasks</h2>
     <form method="POST">
         <label>Brushed Teeth (Morning):</label>
@@ -119,7 +117,6 @@
         <button type="submit">Save Progress</button>
     </form>
 
-    <!-- Display list of scheduled tasks -->
     <h2>Your Scheduled Tasks</h2>
     <div class="progress">
         <ul>

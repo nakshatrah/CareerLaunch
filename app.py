@@ -28,7 +28,7 @@ def monitor_tasks():
                 # Use the `toast` function to send a notification
                 toast(f"It's time to complete: {task}", "Task Reminder")
                 print(f"Notification sent for task: {task}")
-                del tasks[task]  # Remove the task after notification
+                del tasks[task]  # Remove the task after notification (for better organization)
         time.sleep(30)  # Check every 30 seconds
 
 # Start the task monitoring thread
