@@ -33,8 +33,14 @@
             margin: 10px 0 5px;
         }
 
-        input[type="checkbox"] {
+        input[type="checkbox"],
+        input[type="text"],
+        input[type="time"] {
             margin-right: 10px;
+            padding: 8px;
+            width: calc(100% - 20px);
+            margin-bottom: 15px;
+            font-size: 1em;
         }
 
         button {
@@ -91,24 +97,38 @@
 </head>
 <body>
     <h1>Your Profile</h1>
+    
+    <!-- Form for setting a task and time -->
+    <form method="POST">
+        <label for="task_name">Task Name:</label>
+        <input type="text" name="task_name" id="task_name" placeholder="Enter task name" required>
+        
+        <label for="task_time">Task Time (HH:MM):</label>
+        <input type="time" name="task_time" id="task_time" required>
+        
+        <button type="submit">Add Task</button>
+    </form>
+
+    <!-- Show checkbox-based tasks -->
+    <h2>Progress Tasks</h2>
     <form method="POST">
         <label>Brushed Teeth (Morning):</label>
-        <input type="checkbox" name="brush_morning"><br>
+        <input type="checkbox" name="brush_morning" {% if progress.brush_morning %}checked{% endif %}><br>
         <label>Showered Today:</label>
-        <input type="checkbox" name="shower"><br>
+        <input type="checkbox" name="shower" {% if progress.shower %}checked{% endif %}><br>
         <button type="submit">Save Progress</button>
     </form>
 
-    <h2>Your Progress</h2>
+    <!-- Display list of scheduled tasks -->
+    <h2>Your Scheduled Tasks</h2>
     <div class="progress">
         <ul>
-            <li>Brushed Teeth (Morning): <span id="progress-brush">✘</span></li>
-            <li>Showered Today: <span id="progress-shower">✘</span></li>
+            {% for task, time in tasks.items() %}
+            <li>{{ task }}: <span>{{ time }}</span></li>
+            {% endfor %}
         </ul>
     </div>
-
 
     <a href="/">Back to Home</a>
 </body>
 </html>
-
