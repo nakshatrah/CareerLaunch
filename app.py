@@ -1,4 +1,7 @@
 from flask import Flask, render_template, send_from_directory, request
+from win11toast import toast
+
+toast('Welcome to ShellWell :)')
 
 app = Flask(__name__)
 
