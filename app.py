@@ -4,6 +4,9 @@ from datetime import datetime
 import threading
 import time
 
+# Adding initial welcome notif: 
+toast('Welcome to ShellWell :)')
+
 app = Flask(__name__)
 
 # Progress for checkboxes

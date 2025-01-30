@@ -5,25 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shell Well</title>
     <style>
-        body {
-            background: linear-gradient(135deg, #f0f8ff, #e3f2fd);
-            color: #333;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            padding: 50px;
-            margin: 0;
-        }
+        
+    body {
+    background: linear-gradient(135deg, #f8edeb 0%, #fde2e4 50%, #c5dedd 100%);
+    color: #333;
+    font-family: 'Poppins', Arial, sans-serif;
+    text-align: center;
+    padding: 200px;
+    margin: 0;
+    overflow: hidden;
+    }
+
+
         h1 {
-            color: #00509e;
-            font-size: 2.8em;
+            color: #4a4e69;
+            font-size: 3em;
             margin-bottom: 10px;
             animation: fadeIn 1.5s ease-in-out;
         }
         p {
-            font-size: 1.3em;
+            font-size: 1.4em;
             margin: 20px 0;
-            color: #444;
+            color: #6d6875;
         }
+
+        /* I'm going to add a different style to our buttons below, so they look different from the default ones we have currently: */
+
+        a {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ffb4a2, #f77f77);
+            box-shadow: 0px 8px 15px rgba(255, 182, 193, 0.4);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Adding a gradient here for our border: */
+
+        a::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            background: linear-gradient(135deg, #f28482, #ffb4a2, #f77f77, #f7cad0);
+            border-radius: 32px;
+            animation: borderAnimation 4s linear infinite;
+        }
+
+        /* Adding glowing effects so the user will see a change when hovering over objects we have on the website right now: */
+
+        a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 12px 20px rgba(255, 182, 193, 0.6);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .turtle-container {
+            position: relative;
+            width: 150px;
+            margin: 40px auto;
+        }
+
+        .turtle {
+            position: absolute;
+            width: 150px;
+            animation: run 1s linear infinite;
+        }
+
+        @keyframes run {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
         a {
             text-decoration: none;
             color: white;
@@ -63,8 +142,12 @@
 </head>
 
 <body>
+    <!-- Adding our turtle below because we don't have it integrated on the website currently, it'd be a good logo -->
+
+
     <h1>Welcome to Shell Well</h1>
     <p>Track your progress and build healthy habits!</p>
+
     <a href="/profile">Go to Your Profile</a>
 </body>
 
